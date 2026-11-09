@@ -2,21 +2,26 @@
 
 A shareable birthday congratulations landing page for **Rotem Meir**.
 
-Live page: https://dmytroguesty.github.io/happy-birthday-rotem/
+**Expected live URL (GitHub Pages):** https://dmytroguesty.github.io/happy-birthday-rotem/
+
+## Enable GitHub Pages (one-time)
+
+This repo mirrors [happy-birthday-yehor](https://github.com/dmytroguesty/happy-birthday-yehor): static `index.html` from the `main` branch root.
+
+1. Open [Pages settings](https://github.com/dmytroguesty/happy-birthday-rotem/settings/pages)
+2. Source: **Deploy from a branch**
+3. Branch: **main** / folder: **/ (root)** → Save
+
+After the first Pages build finishes, the live URL above will serve this page.
 
 ## What’s here
 
-- Single static page (`index.html`) with atmospheric hero, expressive type, and light celebration motion
-- No build step — open locally or host on GitHub Pages
+- Single static page (`index.html`) — brand-first hero, expressive type, atmospheric teal dusk background, celebration motion
+- No build step
 
 ## Local preview
 
 ```bash
-# from this directory
 python3 -m http.server 8080
-# then open http://localhost:8080
+# open http://localhost:8080
 ```
-
-## Deploy
-
-Published with **GitHub Pages** from the `main` branch root (same pattern as [happy-birthday-yehor](https://github.com/dmytroguesty/happy-birthday-yehor)).
