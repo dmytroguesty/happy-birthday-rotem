@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Rotem Meir</title>
+  <meta name="description" content="A warm birthday congratulations page for Rotem Meir — share the celebration." />
+  <meta property="og:title" content="Happy Birthday, Rotem Meir" />
+  <meta property="og:description" content="Warm wishes and a little sparkle for Rotem Meir." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #03141a;
+      --deep: #06262f;
+      --sea: #0f6f7a;
+      --aqua: #5eead4;
+      --mist: #d7f3ee;
+      --flare: #ff9b6a;
+      --gold: #f0d38a;
+      --foam: #f3fbf9;
+      --muted: rgba(243, 251, 249, 0.72);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--foam);
+      background: var(--ink);
+      overflow-x: hidden;
+    }
+
+    .sky {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(1200px 700px at 12% 18%, rgba(15, 111, 122, 0.55), transparent 60%),
+        radial-gradient(900px 600px at 88% 12%, rgba(255, 155, 106, 0.28), transparent 55%),
+        radial-gradient(1000px 800px at 50% 110%, rgba(94, 234, 212, 0.18), transparent 50%),
+        linear-gradient(165deg, #03141a 0%, #06262f 48%, #08343c 100%);
+    }
+
+    .sky::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 20% 30%, rgba(255, 255, 255, 0.55), transparent),
+        radial-gradient(1px 1px at 70% 20%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1.5px 1.5px at 40% 70%, rgba(255, 255, 255, 0.35), transparent),
+        radial-gradient(1px 1px at 85% 60%, rgba(255, 255, 255, 0.45), transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(255, 255, 255, 0.3), transparent);
+      opacity: 0.7;
+      animation: twinkle 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+      animation: drift 18s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .orb-a {
+      width: 42vw;
+      height: 42vw;
+      max-width: 520px;
+      max-height: 520px;
+      left: -8%;
+      top: 18%;
+      background: radial-gradient(circle, rgba(94, 234, 212, 0.55), transparent 70%);
+    }
+
+    .orb-b {
+      width: 36vw;
+      height: 36vw;
+      max-width: 440px;
+      max-height: 440px;
+      right: -6%;
+      top: 8%;
+      background: radial-gradient(circle, rgba(255, 155, 106, 0.45), transparent 70%);
+      animation-delay: -6s;
+    }
+
+    .orb-c {
+      width: 50vw;
+      height: 50vw;
+      max-width: 620px;
+      max-height: 620px;
+      left: 30%;
+      bottom: -20%;
+      background: radial-gradient(circle, rgba(15, 111, 122, 0.5), transparent 70%);
+      animation-delay: -11s;
+    }
+
+    canvas#spark {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 920px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(1rem, 2.5vw, 1.6rem);
+    }
+
+    .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      font-weight: 600;
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.15s;
+    }
+
+    .brand {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.4rem, 14vw, 8.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      background: linear-gradient(120deg, var(--foam) 10%, var(--aqua) 45%, var(--gold) 78%, var(--flare) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rise 1s ease forwards 0.28s, sheen 8s ease-in-out infinite 1.2s;
+      opacity: 0;
+      text-wrap: balance;
+    }
+
+    .headline {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.35rem, 3.6vw, 2.15rem);
+      color: var(--mist);
+      opacity: 0;
+      animation: rise 1s ease forwards 0.45s;
+    }
+
+    .support {
+      max-width: 36rem;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--muted);
+      opacity: 0;
+      animation: rise 1s ease forwards 0.6s;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: rise 1s ease forwards 0.75s;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 0.85rem;
+      padding: 0.95rem 1.55rem;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--aqua), #2bb7ab);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(94, 234, 212, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 36px rgba(94, 234, 212, 0.35);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--foam);
+      border: 1px solid rgba(243, 251, 249, 0.28);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(243, 251, 249, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .horizon {
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -8%;
+      height: 42%;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(5, 40, 48, 0.55) 35%, rgba(3, 20, 26, 0.9) 100%);
+    }
+
+    .wave {
+      position: absolute;
+      left: -5%;
+      width: 110%;
+      height: 180px;
+      bottom: 0;
+      opacity: 0.35;
+      background:
+        radial-gradient(60% 80% at 20% 100%, rgba(94, 234, 212, 0.35), transparent 60%),
+        radial-gradient(50% 70% at 70% 100%, rgba(255, 155, 106, 0.22), transparent 60%);
+      animation: tide 10s ease-in-out infinite;
+    }
+
+    .wishes {
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 3rem) clamp(5rem, 12vw, 8rem);
+      display: grid;
+      place-items: center;
+    }
+
+    .wishes-inner {
+      width: min(720px, 100%);
+      text-align: center;
+    }
+
+    .wishes h2 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .wishes p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .wish-line {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .wish {
+      padding: 1rem 1.15rem;
+      border-radius: 1rem;
+      background: rgba(243, 251, 249, 0.05);
+      border: 1px solid rgba(243, 251, 249, 0.1);
+      color: var(--mist);
+      font-size: 1rem;
+      line-height: 1.5;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+
+    .wish:hover {
+      background: rgba(94, 234, 212, 0.1);
+      border-color: rgba(94, 234, 212, 0.35);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 0 1.5rem 2.5rem;
+      color: rgba(243, 251, 249, 0.45);
+      font-size: 0.9rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translateX(-50%) translateY(120%);
+      background: rgba(3, 20, 26, 0.92);
+      border: 1px solid rgba(94, 234, 212, 0.35);
+      color: var(--foam);
+      padding: 0.85rem 1.2rem;
+      border-radius: 0.85rem;
+      z-index: 20;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      opacity: 0;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sheen {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(3%, -4%) scale(1.08); }
+    }
+
+    @keyframes tide {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-3%); }
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.45; }
+      to { opacity: 0.85; }
+    }
+
+    @media (max-width: 640px) {
+      .cta-row {
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .eyebrow, .brand, .headline, .support, .cta-row {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+  <canvas id="spark" aria-hidden="true"></canvas>
+
+  <main class="page">
+    <section class="hero" aria-label="Birthday congratulations for Rotem Meir">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="horizon"></div>
+        <div class="wave"></div>
+      </div>
+      <div class="hero-inner">
+        <p class="eyebrow">Happy Birthday</p>
+        <h1 class="brand">Rotem Meir</h1>
+        <p class="headline">Celebrating you today</p>
+        <p class="support">
+          Warm congratulations on your birthday. May this year bring bright days,
+          kind surprises, and plenty of reasons to smile.
+        </p>
+        <div class="cta-row">
+          <button class="btn btn-primary" id="celebrate" type="button">Send some sparkle</button>
+          <a class="btn btn-ghost" href="#wishes">Read a wish</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wishes" id="wishes" aria-label="Birthday wishes">
+      <div class="wishes-inner">
+        <h2>A few warm wishes</h2>
+        <p>Shareable cheers for Rotem — simple, sincere, and meant to be passed along.</p>
+        <div class="wish-line">
+          <button class="wish" type="button" data-wish="Here's to another wonderful year, Rotem.">
+            Here's to another wonderful year, Rotem.
+          </button>
+          <button class="wish" type="button" data-wish="May joy find you easily and often.">
+            May joy find you easily and often.
+          </button>
+          <button class="wish" type="button" data-wish="Happy birthday, Rotem Meir — celebrated and appreciated.">
+            Happy birthday, Rotem Meir — celebrated and appreciated.
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Made to share · Happy Birthday, Rotem Meir
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("spark");
+      const ctx = canvas.getContext("2d");
+      const toast = document.getElementById("toast");
+      const celebrateBtn = document.getElementById("celebrate");
+      let particles = [];
+      let raf = 0;
+      let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function burst(x, y, count = 90) {
+        if (reduceMotion) return;
+        const colors = ["#5eead4", "#ff9b6a", "#f0d38a", "#f3fbf9", "#7ec8c3"];
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 2 + Math.random() * 6;
+          particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2,
+            g: 0.08 + Math.random() * 0.06,
+            life: 60 + Math.random() * 40,
+            size: 2 + Math.random() * 3.5,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            spin: (Math.random() - 0.5) * 0.3,
+            rot: Math.random() * Math.PI,
+          });
+        }
+        if (!raf) raf = requestAnimationFrame(tick);
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles = particles.filter((p) => p.life > 0);
+        for (const p of particles) {
+          p.life -= 1;
+          p.vy += p.g;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.spin;
+          ctx.save();
+          ctx.globalAlpha = Math.max(p.life / 80, 0);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.4);
+          ctx.restore();
+        }
+        if (particles.length) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          raf = 0;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
+      }
+
+      celebrateBtn.addEventListener("click", () => {
+        const rect = celebrateBtn.getBoundingClientRect();
+        burst(rect.left + rect.width / 2, rect.top + rect.height / 2, 120);
+        burst(window.innerWidth * 0.25, window.innerHeight * 0.3, 50);
+        burst(window.innerWidth * 0.75, window.innerHeight * 0.28, 50);
+        showToast("Sparkle sent for Rotem");
+      });
+
+      document.querySelectorAll(".wish").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const text = btn.dataset.wish;
+          burst(window.innerWidth / 2, window.innerHeight * 0.35, 70);
+          try {
+            await navigator.clipboard.writeText(text);
+            showToast("Wish copied — go share it");
+          } catch {
+            showToast(text);
+          }
+        });
+      });
+
+      window.addEventListener("resize", resize);
+      resize();
+
+      if (!reduceMotion) {
+        window.setTimeout(() => {
+          burst(window.innerWidth / 2, window.innerHeight * 0.38, 40);
+        }, 900);
+      }
+    })();
+  </script>
+</body>
+</html>
